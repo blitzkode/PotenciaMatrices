@@ -1,5 +1,7 @@
 package potenciamatrices;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author fyetka
@@ -22,61 +24,153 @@ public class Main extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbMatriz = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        spColumnas = new javax.swing.JSpinner();
+        spFilas = new javax.swing.JSpinner();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btCalcular = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        spPotencia = new javax.swing.JSpinner();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        taResultado = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la matriz"));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tbMatriz.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "A", "B"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane1.setViewportView(tbMatriz);
+
+        spColumnas.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
+        spColumnas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spColumnasStateChanged(evt);
+            }
+        });
+
+        spFilas.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
+        spFilas.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                spFilasStateChanged(evt);
+            }
+        });
+
+        jLabel1.setText("Filas");
+
+        jLabel2.setText("Columnas");
+
+        btCalcular.setText("Calcular");
+        btCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCalcularActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Exponente");
+
+        spPotencia.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(spColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spFilas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(spPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(47, 47, 47))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btCalcular)
+                        .addGap(92, 92, 92))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spFilas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(spPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btCalcular)
+                .addGap(17, 17, 17))
+        );
+
+        jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
+
+        taResultado.setColumns(20);
+        taResultado.setFont(new java.awt.Font("Monospaced", 0, 12)); // NOI18N
+        taResultado.setRows(5);
+        jScrollPane2.setViewportView(taResultado);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(115, 115, 115)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(107, 107, 107)
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(76, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void spFilasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spFilasStateChanged
+        setDimenMatriz();
+    }//GEN-LAST:event_spFilasStateChanged
+
+    private void spColumnasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spColumnasStateChanged
+        setDimenMatriz();
+    }//GEN-LAST:event_spColumnasStateChanged
+
+    private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
+        calcular();
+    }//GEN-LAST:event_btCalcularActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,10 +208,80 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btCalcular;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JSpinner spColumnas;
+    private javax.swing.JSpinner spFilas;
+    private javax.swing.JSpinner spPotencia;
+    private javax.swing.JTextArea taResultado;
+    private javax.swing.JTable tbMatriz;
     // End of variables declaration//GEN-END:variables
 
+    private void setDimenMatriz() {
+        int filas = Integer.parseInt(spFilas.getValue().toString());
+        int columnas = Integer.parseInt(spColumnas.getValue().toString());
+        
+        DefaultTableModel modelo = (DefaultTableModel) tbMatriz.getModel();
+        modelo.setRowCount(filas);
+        modelo.setColumnCount(columnas);
+    }
+    
+    private double[][] getMatriz() {
+        int filas = tbMatriz.getRowCount();
+        int columnas = tbMatriz.getColumnCount();
+        double[][] matriz = new double[filas][columnas];
+        
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                try {
+                    matriz[i][j] = Double.parseDouble(tbMatriz.getValueAt(i, j).toString());
+                } catch (Exception e) {
+                    matriz[i][j] = 0;
+                    tbMatriz.setValueAt(0, i, j);
+                }
+            }
+        }
+        return matriz;
+    }
+        
+    private void calcular() {
+        double[][] matriz = getMatriz();
+        int potencia = Integer.parseInt(spPotencia.getValue().toString());
+        
+        double[][] resultado = Matrices.potencia(matriz, potencia);
+        mostrarResultado(resultado);
+    }
+    
+    private void mostrarResultado(double[][] matriz) {
+        int potencia = Integer.parseInt(spPotencia.getValue().toString());
+        int filas = tbMatriz.getRowCount();
+        int columnas = tbMatriz.getColumnCount();
+        char letra = 'A';
+        String output = "Matriz elevada a la potencia " + potencia;
+        output     += "\n==============================\n";
+        
+        output += String.format("%5s", " ");
+        for (int i = 0; i < columnas; i++) {
+            output += String.format("%4s%6s", letra, " ");
+            letra += 1;
+        }
+        output += "\n";
+        
+        letra = 'A';
+        for (int i = 0; i < filas; i++) {
+            output += String.format("%3s", letra);
+            for (int j = 0; j < columnas; j++) {
+                output += String.format("%10.6f", matriz[i][j]);
+            }
+            output += "\n";
+            letra += 1;
+        }
+        
+        taResultado.setText(output);
+    }
 }
