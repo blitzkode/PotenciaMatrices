@@ -26,17 +26,20 @@ public class Main extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbMatriz = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        spColumnas = new javax.swing.JSpinner();
         spFilas = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         btCalcular = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         spPotencia = new javax.swing.JSpinner();
         jScrollPane2 = new javax.swing.JScrollPane();
         taResultado = new javax.swing.JTextArea();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Potencia de matrices");
+        setResizable(false);
 
         jScrollPane1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos de la matriz"));
 
@@ -51,13 +54,6 @@ public class Main extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tbMatriz);
 
-        spColumnas.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
-        spColumnas.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                spColumnasStateChanged(evt);
-            }
-        });
-
         spFilas.setModel(new javax.swing.SpinnerNumberModel(2, 2, null, 1));
         spFilas.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
@@ -65,9 +61,7 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Filas");
-
-        jLabel2.setText("Columnas");
+        jLabel1.setText("Dimensión");
 
         btCalcular.setText("Calcular");
         btCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -85,41 +79,35 @@ public class Main extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(spColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spFilas, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(spPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(47, 47, 47))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btCalcular)
-                        .addGap(92, 92, 92))))
+                        .addGap(93, 93, 93))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spFilas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(spColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btCalcular)
-                .addGap(17, 17, 17))
+                .addGap(23, 23, 23))
         );
 
         jScrollPane2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultado"));
@@ -129,6 +117,20 @@ public class Main extends javax.swing.JFrame {
         taResultado.setRows(5);
         jScrollPane2.setViewportView(taResultado);
 
+        jMenu1.setText("Ver");
+
+        jMenuItem1.setText("Ejemplo");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -137,11 +139,11 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 447, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
+                        .addGap(138, 138, 138)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 478, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -154,23 +156,24 @@ public class Main extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void spFilasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spFilasStateChanged
-        setDimenMatriz();
+        int dimen = Integer.parseInt(spFilas.getValue().toString());
+        setDimenMatriz(dimen);
     }//GEN-LAST:event_spFilasStateChanged
-
-    private void spColumnasStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spColumnasStateChanged
-        setDimenMatriz();
-    }//GEN-LAST:event_spColumnasStateChanged
 
     private void btCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCalcularActionPerformed
         calcular();
     }//GEN-LAST:event_btCalcularActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        mostrarEjemplo();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,25 +213,23 @@ public class Main extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCalcular;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JSpinner spColumnas;
     private javax.swing.JSpinner spFilas;
     private javax.swing.JSpinner spPotencia;
     private javax.swing.JTextArea taResultado;
     private javax.swing.JTable tbMatriz;
     // End of variables declaration//GEN-END:variables
 
-    private void setDimenMatriz() {
-        int filas = Integer.parseInt(spFilas.getValue().toString());
-        int columnas = Integer.parseInt(spColumnas.getValue().toString());
-        
+    private void setDimenMatriz(int dimen) {      
         DefaultTableModel modelo = (DefaultTableModel) tbMatriz.getModel();
-        modelo.setRowCount(filas);
-        modelo.setColumnCount(columnas);
+        modelo.setRowCount(dimen);
+        modelo.setColumnCount(dimen);
     }
     
     private double[][] getMatriz() {
@@ -247,6 +248,16 @@ public class Main extends javax.swing.JFrame {
             }
         }
         return matriz;
+    }
+    
+    private void setMatriz(double[][] matriz) {
+        setDimenMatriz(matriz.length);
+        
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                tbMatriz.setValueAt(matriz[i][j], i, j);
+            }
+        }
     }
         
     private void calcular() {
@@ -283,5 +294,16 @@ public class Main extends javax.swing.JFrame {
         }
         
         taResultado.setText(output);
+    }
+    
+    private void mostrarEjemplo() {
+        double[][] ejemplo = {
+            {.796, .133, .000, .040},
+            {.091, .767, .109, .060},
+            {.046, .017, .891, .040},
+            {.067, .083, .000, .860}
+        };
+        setMatriz(ejemplo);
+        spFilas.setValue(ejemplo.length);
     }
 }
